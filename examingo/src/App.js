@@ -1,5 +1,5 @@
 import React from 'react';
-import books from './books.png';
+import ExamingoLogo from './ExamingoLogo.png';
 import './App.css';
 import Questions from './popups/Questions';
 import { useState } from 'react';
@@ -68,7 +68,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={books} className="App-books" alt="books" />
+        <img src={ExamingoLogo} className="App-logo" alt="logo" />
         <p className="MiddleText">
           <b>Examingo</b>
         </p>
