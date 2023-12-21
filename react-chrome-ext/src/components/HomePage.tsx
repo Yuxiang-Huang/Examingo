@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import ExamingoLogo from "./ExamingoLogo.png";
+import ExamingoLogo from "./components/ExamingoLogo.png";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -17,7 +17,9 @@ const HomePage = () => {
     <div className="HomePage">
       <header className="Home-page-header">
         <img src={ExamingoLogo} className="Logo" alt="logo" />
-        <div>HomePage</div>
+        <p className="MiddleText">
+          <b>Examingo</b>
+        </p>
         <button onClick={gotToQuestionTypePage}>Test Yourself</button>
         <button onClick={goToResolveQuestionPage}>Resolve Questions</button>
         <button>
