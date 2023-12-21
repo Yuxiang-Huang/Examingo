@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.App-books {
+.App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -12,7 +12,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-books {
+  .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
