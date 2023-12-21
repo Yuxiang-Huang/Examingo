@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Examingo",
+  "description": "An extension that creates questions based on your website open",
+  "version": "1.0.0",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Open"
+  },
+  "permissions": [
+    "scripting"
+  ] 
+}
