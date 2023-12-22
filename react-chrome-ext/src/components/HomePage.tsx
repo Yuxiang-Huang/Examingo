@@ -18,14 +18,30 @@ const HomePage = () => {
   };
 
   const testReadibility = () => {
-    var article = new Readability(document).parse();
-    alert(article?.content);
-    // let result = "";
-    // result += article?.content;
-    // console.log(article);
-    // console.log(result);
-    // setDisplayText("Hello");
+    chrome.tabs
+      .query({ active: true, currentWindow: true })
+      .then(function (tabs) {
+        var activeTab = tabs[0];
+        var activeTabId = activeTab.id;
+        if (activeTabId != undefined)
+          return chrome.scripting.executeScript({
+            target: { tabId: activeTabId },
+            func: DOMtoString,
+          });
+      })
+      .then(function (results) {
+        // if (results != undefined)
+        // alert(new Readability(results[0]).parse()?.content);
+      })
+      .catch(function (error) {
+        alert("There was an error injecting script : \n" + error.message);
+      });
   };
+
+  function DOMtoString() {
+    alert(JSON.stringify(document.documentElement.innerHTML));
+    // return document;
+  }
 
   return (
     <div className="HomePage">
