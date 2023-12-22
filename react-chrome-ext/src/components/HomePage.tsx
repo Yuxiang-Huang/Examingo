@@ -30,8 +30,8 @@ const HomePage = () => {
           });
       })
       .then(function (results) {
-        // if (results != undefined)
-        // alert(new Readability(results[0]).parse()?.content);
+        if (results != undefined)
+          console.log(JSON.stringify(results[0].result));
       })
       .catch(function (error) {
         alert("There was an error injecting script : \n" + error.message);
@@ -39,8 +39,7 @@ const HomePage = () => {
   };
 
   function DOMtoString() {
-    alert(JSON.stringify(document.documentElement.innerHTML));
-    // return document;
+    return document.documentElement.innerHTML;
   }
 
   return (
