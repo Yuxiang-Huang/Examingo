@@ -12,8 +12,9 @@ const MultipleChoiceButton: React.FC<MultipleChoiceButtonProps> = ({ optionText,
     const [radioButtonStyling, setRadioButtonStyling] = useState<string>("");
     
     const revealChangeBorder = () => {
-        if (!isCorrect) {
+        if (!isCorrect && !isRevealed) {
             setBorder("border-2 border-incorrect-red");
+            setRadioButtonStyling("bg-incorrect-red")
         }
         setIsRevealed(true);
     }
@@ -33,6 +34,7 @@ const MultipleChoiceButton: React.FC<MultipleChoiceButtonProps> = ({ optionText,
     useEffect(() => {
         if (isCorrect && isRevealed) {
             setBorder("border-2 border-correct-green");
+            setRadioButtonStyling("bg-correct-green")
         }
     }, [isRevealed]);
 
