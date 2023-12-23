@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 type TextBoxProps = {
-    text: string;
+  text: string;
 };
 
-const TextBox: React.FC<TextBoxProps> = ({  }) => {
-    const [editable, setEditable] = useState<string>();
-    useEffect(() => {
-        // setEditable();
-    }, []);
+const TextBox: React.FC<TextBoxProps> = ({ text }) => {
+  const [editable, setEditable] = useState<string>();
+  useEffect(() => {
+    // setEditable();
+  }, []);
 
-    return (
-        <>
-            
-        </>
-    );
+  return <input className="bg-blue-500" />;
 };
 
 export default TextBox;

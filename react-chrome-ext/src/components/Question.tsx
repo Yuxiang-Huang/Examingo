@@ -5,7 +5,7 @@ interface QuestionProps {
 }
 
 const Question: React.FC<QuestionProps> = ({ questionText }) => {
-  return <p>{questionText} </p>;
+  return <p className="underline">{questionText} </p>;
 };
 
 export default Question;
