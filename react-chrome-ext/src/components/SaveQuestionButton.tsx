@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const SaveQuestionButton = () => {
-    return (
-        <>
-            
-        </>
-    );
+  return (
+    <div>
+      <button>Save</button>
+    </div>
+  );
 };
 
 export default SaveQuestionButton;

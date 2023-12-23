@@ -1,15 +1,17 @@
-import React from 'react';
+import React from "react";
 
 interface CheckAnswerButtonProps {
-    buttonText: string;
+  buttonText: string;
 }
 
-const CheckAnswerButton: React.FC<CheckAnswerButtonProps> = ({  }) => {
-    return (
-        <>
-            
-        </>
-    );
+const CheckAnswerButton: React.FC<CheckAnswerButtonProps> = ({
+  buttonText,
+}) => {
+  return (
+    <div>
+      <button>{buttonText}</button>
+    </div>
+  );
 };
 
 export default CheckAnswerButton;
