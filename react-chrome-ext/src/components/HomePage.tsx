@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 import { Readability } from "@mozilla/readability";
 import { useState } from "react";
+import LogoText from "./LogoText";
 
 const HomePage = () => {
   const [displayText, setDisplayText] = useState("Test Usability");
@@ -44,11 +45,9 @@ const HomePage = () => {
 
   return (
     <div className="HomePage">
-      <header className="Home-page-header bg-primary-purple-50">
+      <header className="Home-page-header bg-background-purple">
         {/* <img src={ExamingoLogo} className="Logo" alt="logo" /> */}
-        <p className="MiddleText">
-          <b>Examingo</b>
-        </p>
+        <LogoText />
         <button onClick={gotToQuestionTypePage}>Test Yourself</button>
         <button onClick={goToResolveQuestionPage}>Resolve Questions</button>
         <button>
