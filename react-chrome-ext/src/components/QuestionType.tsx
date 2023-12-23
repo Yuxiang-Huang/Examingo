@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import NavButton from "./NavButton";
+import LogoText from "./LogoText";
 
 const QuestionType = () => {
   const navigate = useNavigate();
@@ -13,8 +15,9 @@ const QuestionType = () => {
 
   return (
     <div>
-      <button onClick={gotToMCPage}>Multiple Choice</button>
-      <button onClick={goToFRPage}>Free Response</button>
+      <LogoText />
+      <NavButton buttonText="Multiple Choice" clickFunction={gotToMCPage} />
+      <NavButton buttonText="Free Response" clickFunction={goToFRPage} />
     </div>
   );
 };
