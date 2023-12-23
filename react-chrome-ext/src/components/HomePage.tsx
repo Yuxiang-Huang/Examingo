@@ -4,9 +4,9 @@ import "./HomePage.css";
 import { Readability } from "@mozilla/readability";
 import { useState } from "react";
 
-const HomePage = () => {
-  const [displayText, setDisplayText] = useState("Test Usability");
+import NavButton from "./NavButton";
 
+const HomePage = () => {
   const navigate = useNavigate();
 
   const gotToQuestionTypePage = () => {
@@ -39,6 +39,8 @@ const HomePage = () => {
   };
 
   function DOMtoString() {
+    // var article = new Readability(document).parse();
+    // console.log(article?.content);
     return document.documentElement.innerHTML;
   }
 
@@ -46,15 +48,20 @@ const HomePage = () => {
     <div className="HomePage">
       <header className="Home-page-header bg-primary-purple-50">
         {/* <img src={ExamingoLogo} className="Logo" alt="logo" /> */}
-        <p className="MiddleText">
-          <b>Examingo</b>
-        </p>
-        <button onClick={gotToQuestionTypePage}>Test Yourself</button>
-        <button onClick={goToResolveQuestionPage}>Resolve Questions</button>
-        <button>
+        <LogoText />
+        <NavButton
+          buttonText="Test Yourself"
+          clickFunction={gotToQuestionTypePage}
+        />
+        <NavButton
+          buttonText="Resolve Questions"
+          clickFunction={goToResolveQuestionPage}
+        />
+
+        <button className="underline m-4">
           <a href="#">Personalize Learning</a>
         </button>
-        <button onClick={testReadibility}>{displayText}</button>
+        <button onClick={testReadibility}>Test Usability</button>
       </header>
     </div>
   );
