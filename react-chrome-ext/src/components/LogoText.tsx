@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const LogoText = () => {
-  return <p>Examingo</p>;
+    return (
+        <>
+            
+        </>
+    );
 };
 
 export default LogoText;
