@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 // import ExamingoLogo from "./components/ExamingoLogo.png";
-import "./HomePage.css";
 import { Readability } from "@mozilla/readability";
 import { useState } from "react";
 
@@ -46,8 +45,8 @@ const HomePage = () => {
   }
 
   return (
-    <div className="HomePage">
-      <header className="Home-page-header bg-background-purple">
+    <div>
+      <header className="Home-page-header bg-background-purple flex flex-col items-center justify-center min-h-svh text-2xl">
         {/* <img src={ExamingoLogo} className="Logo" alt="logo" /> */}
         <LogoText />
         <NavButton

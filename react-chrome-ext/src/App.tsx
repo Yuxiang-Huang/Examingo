@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router";
 import HomePage from "./components/HomePage";
 import QuestionType from "./components/QuestionType";
 import ResolveQuestion from "./components/ResolveQuesion";
-import "./App.css";
+// import "./App.css";
 import FreeResponse from "./components/FreeResponse";
 import MultipleChoice from "./components/MultipleChoice";
 
