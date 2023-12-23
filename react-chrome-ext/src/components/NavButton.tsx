@@ -5,19 +5,12 @@ interface NavButtonProps {
     clickFunction: () => void;
 }
 
+// Create a button with a custom svg shape with a gradient background
 const NavButton: React.FC<NavButtonProps> = ({ buttonText, clickFunction }) => {
     return (
-        <button onClick={clickFunction} className=" w-full relative border-primary-red border-8">
-            <svg className="absolute" width='100%' height='100%' viewBox="0 0 100 100" preserveAspectRatio="none">
-                <defs>
-                    <linearGradient id="button-gradient">
-                        <stop offset="0%" stop-color="red" />
-                        <stop offset="100%" stop-color="purple" />
-                    </linearGradient>
-                </defs>
-                <polygon fill="url(#button-gradient)"points="0,0 0,100 100,100 100,0" />
-            </svg>
-            {buttonText}
+        <button onClick={clickFunction} className="w-9/12 relative m-2">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary-red to-primary-purple -skew-x-24 rounded-lg shadow-main"></div>
+            <span className="relative">{buttonText}</span>
         </button>
     );
 };
