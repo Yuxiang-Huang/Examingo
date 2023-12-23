@@ -44,7 +44,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center text-center">
       {/* <img src={ExamingoLogo} className="Logo" alt="logo" /> */}
       <LogoText />
       <NavButton
@@ -54,6 +54,11 @@ const HomePage = () => {
       <NavButton
         buttonText="Resolve Questions"
         clickFunction={goToResolveQuestionPage}
+      />
+
+      <NavButton
+        buttonText="Personalize Learning"
+        clickFunction={testReadibility}
       />
 
       <button className="underline m-4">
