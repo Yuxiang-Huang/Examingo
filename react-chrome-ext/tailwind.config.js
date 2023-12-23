@@ -19,8 +19,8 @@ module.exports = {
         "-24": "-24deg",
       },
       boxShadow: {
-        'main': 'inset 0px 0px 15px 0px rgba(0,0,0,0.5)',
-      }
+        main: "inset 0px 0px 15px 0px rgba(0,0,0,0.5)",
+      },
     },
   },
   plugins: [],
