@@ -44,7 +44,7 @@ const HomePage = () => {
 
   return (
     <div className="HomePage">
-      <header className="Home-page-header">
+      <header className="Home-page-header bg-primary-purple-50">
         {/* <img src={ExamingoLogo} className="Logo" alt="logo" /> */}
         <p className="MiddleText">
           <b>Examingo</b>
