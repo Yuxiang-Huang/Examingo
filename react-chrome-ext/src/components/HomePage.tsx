@@ -59,10 +59,10 @@ const HomePage = () => {
           clickFunction={goToResolveQuestionPage}
         />
 
-        <button>
+        <button className="underline m-4">
           <a href="#">Personalize Learning</a>
         </button>
-        <button onClick={testReadibility}>Test Usability"</button>
+        <button onClick={testReadibility}>Test Usability</button>
       </header>
     </div>
   );
