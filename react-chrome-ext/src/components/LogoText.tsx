@@ -2,9 +2,12 @@ import React from "react";
 
 const LogoText = () => {
   return (
-    <h1 className="bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 text-transparent bg-clip-text">
-      hello world
-    </h1>
+    <div>
+      <span className="bg-gradient-to-r from-primary-purple to-primary-red text-transparent bg-clip-text">
+        Exam
+      </span>
+      <span>ingo</span>
+    </div>
   );
 };
 
