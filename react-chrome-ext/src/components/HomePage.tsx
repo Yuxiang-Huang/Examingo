@@ -44,7 +44,7 @@ const HomePage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center text-center">
+    <div className="flex flex-col items-center justify-center h-screen w-screen text-center">
       {/* <img src={ExamingoLogo} className="Logo" alt="logo" /> */}
       <LogoText />
       <NavButton
