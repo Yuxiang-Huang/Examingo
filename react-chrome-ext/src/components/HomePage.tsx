@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 import { Readability } from "@mozilla/readability";
 import { useState } from "react";
+
 import LogoText from "./LogoText";
+import NavButton from "./NavButton";
 
 const HomePage = () => {
-  const [displayText, setDisplayText] = useState("Test Usability");
-
   const navigate = useNavigate();
 
   const gotToQuestionTypePage = () => {
@@ -40,6 +40,8 @@ const HomePage = () => {
   };
 
   function DOMtoString() {
+    // var article = new Readability(document).parse();
+    // console.log(article?.content);
     return document.documentElement.innerHTML;
   }
 
@@ -48,12 +50,19 @@ const HomePage = () => {
       <header className="Home-page-header bg-background-purple">
         {/* <img src={ExamingoLogo} className="Logo" alt="logo" /> */}
         <LogoText />
-        <button onClick={gotToQuestionTypePage}>Test Yourself</button>
-        <button onClick={goToResolveQuestionPage}>Resolve Questions</button>
+        <NavButton
+          buttonText="Test Yourself"
+          clickFunction={gotToQuestionTypePage}
+        />
+        <NavButton
+          buttonText="Resolve Questions"
+          clickFunction={goToResolveQuestionPage}
+        />
+
         <button>
           <a href="#">Personalize Learning</a>
         </button>
-        <button onClick={testReadibility}>{displayText}</button>
+        <button onClick={testReadibility}>Test Usability"</button>
       </header>
     </div>
   );
