@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 // import ExamingoLogo from "./components/ExamingoLogo.png";
-import "./HomePage.css";
 import { Readability } from "@mozilla/readability";
 import { useState } from "react";
 import LogoText from "./LogoText";
@@ -45,24 +44,22 @@ const HomePage = () => {
   }
 
   return (
-    <div className="HomePage">
-      <header className="Home-page-header bg-background-purple">
-        {/* <img src={ExamingoLogo} className="Logo" alt="logo" /> */}
-        <LogoText />
-        <NavButton
-          buttonText="Test Yourself"
-          clickFunction={gotToQuestionTypePage}
-        />
-        <NavButton
-          buttonText="Resolve Questions"
-          clickFunction={goToResolveQuestionPage}
-        />
+    <div className="flex flex-col items-center justify-center min-h-svh w-svw">
+      {/* <img src={ExamingoLogo} className="Logo" alt="logo" /> */}
+      <LogoText />
+      <NavButton
+        buttonText="Test Yourself"
+        clickFunction={gotToQuestionTypePage}
+      />
+      <NavButton
+        buttonText="Resolve Questions"
+        clickFunction={goToResolveQuestionPage}
+      />
 
-        <button className="underline m-4">
-          <a href="#">Personalize Learning</a>
-        </button>
-        <button onClick={testReadibility}>Test Usability</button>
-      </header>
+      <button className="underline m-4">
+        <a href="#">Personalize Learning</a>
+      </button>
+      <button onClick={testReadibility}>Test Usability</button>
     </div>
   );
 };
