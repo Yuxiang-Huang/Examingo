@@ -1,5 +1,7 @@
+import "../index.css";
+
 const FreeResponse = () => {
-  return <div>FreeResponse</div>;
+  return <div className="underline">FreeResponse</div>;
 };
 
 export default FreeResponse;
