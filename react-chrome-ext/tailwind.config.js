@@ -13,13 +13,15 @@ module.exports = {
         "secondary-purple": "#4C0059",
         "primary-purple-50": "rgba(219,0,255,0.5)",
         "primary-red-50": "rgba(255,0,31,0.5)",
+        "primary-purple-75": "rgba(219,0,255,0.75)",
+        "primary-red-75": "rgba(255,0,31,0.75)",
         "text-color": "white",
       },
       skew: {
         "-24": "-24deg",
       },
       boxShadow: {
-        main: "inset 0px 0px 15px 0px rgba(0,0,0,0.5)",
+        main: "inset 0px 0px 15px 5px rgba(0,0,0,0.5)",
       },
       flexBasis: {
         "1/10":"10%",
