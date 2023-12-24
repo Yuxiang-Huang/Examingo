@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 
 type TextBoxProps = {
-  text: string;
+  initialText: string;
+  isReadOnly: boolean;
+  textFunction: () => void;
 };
 
-const TextBox: React.FC<TextBoxProps> = ({ text }) => {
-  const [editable, setEditable] = useState<string>();
+const TextBox: React.FC<TextBoxProps> = ({ initialText, isReadOnly, textFunction }) => {
+  const [text, setText] = useState<string>(initialText);
+  const [resize, setResize] = useState<string>("");
+  
   useEffect(() => {
-    // setEditable();
-  }, []);
+    setResize(`h-${Math.ceil(text.length / 50) * 12}`);
+    textFunction();
+  }, [text]);
 
-  return <input className="bg-blue-500" />;
+  return <textarea className={resize + " " + "bg-gradient-to-r from-primary-red-50 to-primary-purple-50 rounded-lg border-none outline-none overflow-auto resize-none w-full"} readOnly={false} value={text} onChange={e => setText(e.target.value)}></textarea>;
 };
 
 export default TextBox;

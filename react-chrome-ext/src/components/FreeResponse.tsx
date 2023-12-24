@@ -9,7 +9,7 @@ const FreeResponse = () => {
     <div>
       <LogoText />
       <Question questionText="What is Democracy?" />
-      <TextBox text="I don't know." />
+      <TextBox initialText="I don't know." isReadOnly={false} textFunction={ () => false }/>
       <CheckAnswerButton buttonText="Check" />
       <SaveQuestionButton />
     </div>
