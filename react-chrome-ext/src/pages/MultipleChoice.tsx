@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import MultipleChoiceButton from "../components/MultipleChoiceButton";
+import LogoText from "../components/LogoText";
+import Question from "../components/Question";
+import SaveQuestionButton from "../components/SaveQuestionButton";
 
 const MultipleChoice = () => {
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
 
   return (
-    <div>
-      <h1>Multiple Choice</h1>
+    <div className="bg-background-purple">
+      <LogoText />
+      <Question questionText="Question:" />
       <div className="my-2">
         <MultipleChoiceButton
           optionText="Choice 1"
@@ -33,6 +37,7 @@ const MultipleChoice = () => {
           setIsRevealed={setIsRevealed}
         />
       </div>
+      <SaveQuestionButton />
     </div>
   );
 };

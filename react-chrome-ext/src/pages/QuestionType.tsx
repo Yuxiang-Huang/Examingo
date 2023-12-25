@@ -14,7 +14,7 @@ const QuestionType = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center bg-background-purple">
       <LogoText />
       <NavButton buttonText="Multiple Choice" clickFunction={gotToMCPage} />
       <NavButton buttonText="Free Response" clickFunction={goToFRPage} />
