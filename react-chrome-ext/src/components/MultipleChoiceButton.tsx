@@ -42,7 +42,7 @@ const MultipleChoiceButton: React.FC<MultipleChoiceButtonProps> = ({
     if (isCorrect && isRevealed) {
       setBorder("border-2 border-correct-green");
     }
-  }, [isRevealed]);
+  }, [isRevealed, isCorrect]);
 
   return (
     <div

@@ -9,7 +9,7 @@ const CheckAnswerButton: React.FC<CheckAnswerButtonProps> = ({
 }) => {
   return (
     <div>
-      <button>{buttonText}</button>
+      <button className="border-2 rounded-lg">{buttonText}</button>
     </div>
   );
 };

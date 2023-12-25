@@ -6,7 +6,7 @@ import TextBox from "../components/TextBox";
 
 const FreeResponse = () => {
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center bg-background-purple space-y-5">
       <LogoText />
       <Question questionText="What is Democracy?" />
       <TextBox text="I don't know." />
