@@ -24,6 +24,7 @@ module.exports = {
         main: "inset 0px 0px 15px 2px rgba(0,0,0,0.5)",
         'inner-white': "inset 0px 0px 15px 2px rgba(255,255,255,0.25)",
         'glow-red': "inset 0px 0px 15px 2px rgba(255,0,0,0.25)",
+        'glow-green': "inset 0px 0px 15px 2px rgba(0,255,0,0.25)",
       },
       flexBasis: {
         "1/10":"10%",

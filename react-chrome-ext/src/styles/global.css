@@ -11,7 +11,7 @@
   src: url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,700&display=swap');
 }
 
-body {
+.container {
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
   -webkit-font-smoothing: antialiased;
@@ -26,11 +26,12 @@ body {
 
   @apply p-4;
   @apply overflow-y-auto;
+  @apply overflow-x-hidden;
   @apply bg-background-purple;
   @apply text-text-color;
   @apply m-0;
   @apply border;
   @apply border-primary-red;
-  @apply rounded-2xl;
+  /* @apply rounded-2xl; */
   @apply shadow-glow-red;
 }

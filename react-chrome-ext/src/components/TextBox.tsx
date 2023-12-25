@@ -16,7 +16,7 @@ const TextBox: React.FC<TextBoxProps> = ({ initialText, isReadOnly, textFunction
     textFunction();
   }, [text]);
 
-  return <textarea className="text-black bg-gradient-to-br from-primary-red-50 to-primary-purple-50 rounded-lg border-none py-2 px-4 outline-none overflow-auto resize-none w-full shadow-inner-white" readOnly={isReadOnly} value={text} ref={textAreaRef} onChange={e => setText(e.target.value)}></textarea>;
+  return <textarea className="text-black bg-gradient-to-r from-primary-purple-50 to-primary-red-50 rounded-lg border-none py-2 px-4 outline-none overflow-auto resize-none w-full shadow-inner-white" readOnly={isReadOnly} value={text} ref={textAreaRef} onChange={e => setText(e.target.value)}></textarea>;
 };
 
 export default TextBox;

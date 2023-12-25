@@ -7,7 +7,7 @@ interface SaveButtonProps {
 const SaveQuestionButton: React.FC<SaveButtonProps>  = ({ saveFunction }) => {
   return (
     <button onClick={saveFunction} className="w-full relative my-3 bg-secondary-purple shadow-glow-red border-primary-purple border rounded-xl">
-      <span className="em:text-lg font-medium bg-gradient-to-br from-primary-purple to-primary-red text-transparent bg-clip-text">
+      <span className="em:text-lg font-bold bg-gradient-to-br from-primary-purple to-primary-red text-transparent bg-clip-text">
         Save Question
       </span>
     </button>

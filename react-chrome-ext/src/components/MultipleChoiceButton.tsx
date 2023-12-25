@@ -13,7 +13,7 @@ const MultipleChoiceButton: React.FC<MultipleChoiceButtonProps> = ({ optionText,
     
     const revealChangeBorder = () => {
         if (!isCorrect && !isRevealed) {
-            setBorder("border-2 border-incorrect-red");
+            setBorder("border-2 border-incorrect-red shadow-glow-red");
             setRadioButtonStyling("bg-incorrect-red")
         }
         setIsRevealed(true);
@@ -33,13 +33,13 @@ const MultipleChoiceButton: React.FC<MultipleChoiceButtonProps> = ({ optionText,
 
     useEffect(() => {
         if (isCorrect && isRevealed) {
-            setBorder("border-2 border-correct-green");
+            setBorder("border-2 border-correct-green shadow-glow-green");
             setRadioButtonStyling("bg-correct-green")
         }
     }, [isRevealed]);
 
     return (
-        <div className={border + " " + "w-full h-12 relative flex flex-col justify-center rounded-xl my-2"} onClick={revealChangeBorder} onMouseOver={mouseOverHandler} onMouseOut={mouseOutHandler}>
+        <div className={border + " " + "w-full min-h-12 relative flex flex-col justify-center rounded-xl my-2"} onClick={revealChangeBorder} onMouseOver={mouseOverHandler} onMouseOut={mouseOutHandler}>
             <div className={radioButtonStyling + " " + "absolute  w-4 h-4 top-1/2 left-2 -translate-y-1/2 rounded-full"}></div>
             <div className="ml-8">{optionText}</div>
         </div>
