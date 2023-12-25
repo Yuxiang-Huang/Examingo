@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import MultipleChoiceButton from "./MultipleChoiceButton";
+import SaveQuestionButton from "./SaveQuestionButton";
 
 const MultipleChoice = () => {
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
@@ -11,6 +12,7 @@ const MultipleChoice = () => {
       <MultipleChoiceButton optionText="Choice 2" isCorrect={false} isRevealed={isRevealed} setIsRevealed={setIsRevealed}/>
       <MultipleChoiceButton optionText="Choice 3" isCorrect={false} isRevealed={isRevealed} setIsRevealed={setIsRevealed}/>
       <MultipleChoiceButton optionText="Choice 4" isCorrect={false} isRevealed={isRevealed} setIsRevealed={setIsRevealed}/>
+      <SaveQuestionButton saveFunction={() => false} />
     </div>
   </div>;
 };
