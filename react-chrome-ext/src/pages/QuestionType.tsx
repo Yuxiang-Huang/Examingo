@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import NavButton from "./NavButton";
-import LogoText from "./LogoText";
+import NavButton from "../components/NavButton";
+import LogoText from "../components/LogoText";
 
 const QuestionType = () => {
   const navigate = useNavigate();

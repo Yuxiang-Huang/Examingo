@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Readability } from "@mozilla/readability";
 import { useState } from "react";
 
-import LogoText from "./LogoText";
-import NavButton from "./NavButton";
+import LogoText from "../components/LogoText";
+import NavButton from "../components/NavButton";
 
 const HomePage = () => {
   const navigate = useNavigate();

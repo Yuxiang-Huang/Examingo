@@ -1,8 +1,8 @@
-import CheckAnswerButton from "./CheckAnswerButton";
-import LogoText from "./LogoText";
-import Question from "./Question";
-import SaveQuestionButton from "./SaveQuestionButton";
-import TextBox from "./TextBox";
+import CheckAnswerButton from "../components/CheckAnswerButton";
+import LogoText from "../components/LogoText";
+import Question from "../components/Question";
+import SaveQuestionButton from "../components/SaveQuestionButton";
+import TextBox from "../components/TextBox";
 
 const FreeResponse = () => {
   return (

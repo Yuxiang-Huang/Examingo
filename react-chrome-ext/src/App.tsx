@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router";
-import HomePage from "./components/HomePage";
-import QuestionType from "./components/QuestionType";
-import ResolveQuestion from "./components/ResolveQuesion";
+import HomePage from "./pages/HomePage";
+import QuestionType from "./pages/QuestionType";
+import ResolveQuestion from "./pages/ResolveQuesion";
 // import "./App.css";
-import FreeResponse from "./components/FreeResponse";
-import MultipleChoice from "./components/MultipleChoice";
+import FreeResponse from "./pages/FreeResponse";
+import MultipleChoice from "./pages/MultipleChoice";
 
 function App() {
   return (
