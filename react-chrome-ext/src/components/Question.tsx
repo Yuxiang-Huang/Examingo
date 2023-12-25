@@ -5,7 +5,14 @@ interface QuestionProps {
 }
 
 const Question: React.FC<QuestionProps> = ({ questionText }) => {
-  return <p className="underline">{questionText} </p>;
+  return (
+    <div>
+      <p className="font-extralight">{questionText} </p>
+      <div className="relative">
+        <span className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-primary-purple to-primary-red"></span>
+      </div>
+    </div>
+  );
 };
 
 export default Question;
