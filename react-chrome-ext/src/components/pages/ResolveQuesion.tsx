@@ -6,24 +6,28 @@ import SaveQuestionButton from "../SaveQuestionButton";
 import TextBox from "../TextBox";
 
 const ResolveQuesiton = () => {
-  const [display, setDisplay] = useState(false);
+  const [displayAnswer, setDisplayAnswer] = useState(false);
 
   return (
     <div>
       <LogoText />
       <Question questionText="Type Your Question" />
-      <TextBox initialText="" isReadOnly={display} textFunction={() => false} />
-      {display && (
+      <TextBox
+        initialText=""
+        isReadOnly={displayAnswer}
+        textFunction={() => false}
+      />
+      {displayAnswer && (
         <TextBox
           initialText="I don't know."
           isReadOnly={true}
           textFunction={() => false}
         />
       )}
-      {!display && (
+      {!displayAnswer && (
         <CheckAnswerButton
           buttonText="Answer"
-          checkAnswerFunction={() => setDisplay(true)}
+          checkAnswerFunction={() => setDisplayAnswer(true)}
         />
       )}
       <SaveQuestionButton saveFunction={() => false} />
