@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 // import ExamingoLogo from "./components/ExamingoLogo.png";
 import { Readability } from "@mozilla/readability";
 import { useState } from "react";
-import LogoText from "./LogoText";
-import NavButton from "./NavButton";
+import LogoText from "../LogoText";
+import NavButton from "../NavButton";
 
 const HomePage = () => {
   const navigate = useNavigate();
