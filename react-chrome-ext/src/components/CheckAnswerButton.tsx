@@ -11,7 +11,10 @@ const CheckAnswerButton: React.FC<CheckAnswerButtonProps> = ({
 }) => {
   return (
     <div>
-      <button className="border-2 rounded-lg" onClick={setDisplayTrue}>
+      <button
+        className="border-2 rounded-lg bg-#450000"
+        onClick={setDisplayTrue}
+      >
         {buttonText}
       </button>
     </div>

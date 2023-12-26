@@ -8,7 +8,7 @@ const MultipleChoice = () => {
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
 
   return (
-    <div className="bg-background-purple">
+    <div className="flex flex-col items-center justify-center bg-background-purple space-y-5">
       <LogoText />
       <Question questionText="Question:" />
       <div className="my-2">

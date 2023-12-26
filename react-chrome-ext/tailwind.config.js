@@ -14,6 +14,8 @@ module.exports = {
         "primary-purple-50": "rgba(219,0,255,0.5)",
         "primary-red-50": "rgba(255,0,31,0.5)",
         "text-color": "white",
+
+        "button-bg": "#4C0059",
       },
       skew: {
         "-24": "-24deg",
