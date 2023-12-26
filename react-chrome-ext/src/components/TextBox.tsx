@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
 
-type TextBoxProps = {
+interface TextBoxProps {
+  editable: boolean;
   text: string;
-};
+}
 
-const TextBox: React.FC<TextBoxProps> = ({ text }) => {
-  const [editable, setEditable] = useState<string>();
-  useEffect(() => {
-    // setEditable();
-  }, []);
+const TextBox: React.FC<TextBoxProps> = ({ editable, text }) => {
+  const getText = () => {
+    if (!editable) return text;
+  };
 
-  return <input className="bg-blue-500" />;
+  return (
+    <textarea
+      readOnly={!editable}
+      rows={5}
+      className="bg-gradient-to-r from-primary-purple to-primary-red rounded-xl"
+    >
+      {getText()}
+    </textarea>
+  );
 };
 
 export default TextBox;

@@ -2,14 +2,18 @@ import React from "react";
 
 interface CheckAnswerButtonProps {
   buttonText: string;
+  setDisplayTrue: () => void;
 }
 
 const CheckAnswerButton: React.FC<CheckAnswerButtonProps> = ({
   buttonText,
+  setDisplayTrue,
 }) => {
   return (
     <div>
-      <button className="border-2 rounded-lg">{buttonText}</button>
+      <button className="border-2 rounded-lg" onClick={setDisplayTrue}>
+        {buttonText}
+      </button>
     </div>
   );
 };
