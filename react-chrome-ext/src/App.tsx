@@ -9,7 +9,7 @@ import MultipleChoice from "./pages/MultipleChoice";
 function App() {
   return (
     <Routes>
-      <Route index element={<HomePage />} />
+      <Route path="/" element={<HomePage />} index />
       <Route path="/QuestionType" element={<QuestionType />} />
       <Route path="/ResolveQuestion" element={<ResolveQuestion />} />
       <Route path="/FreeResponse" element={<FreeResponse />} />

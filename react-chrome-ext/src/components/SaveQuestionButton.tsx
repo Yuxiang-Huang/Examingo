@@ -1,16 +1,19 @@
 import React from "react";
 
-const SaveQuestionButton = () => {
+interface SaveButtonProps {
+  saveFunction: () => void;
+}
+
+const SaveQuestionButton: React.FC<SaveButtonProps> = ({ saveFunction }) => {
   return (
-    <div>
-      <button className="rounded-full p-1px mb-3 bg-gradient-to-r from-primary-purple to-primary-red">
-        <span className="flex w-full rounded-full p-2 bg-button-bg">
-          <span className="bg-gradient-to-r from-primary-red to-primary-purple text-transparent bg-clip-text text-base">
-            Save Question
-          </span>
-        </span>
-      </button>
-    </div>
+    <button
+      onClick={saveFunction}
+      className="w-full relative my-3 bg-secondary-purple shadow-glow-red border-primary-purple border rounded-xl"
+    >
+      <span className="em:text-lg font-bold bg-gradient-to-br from-primary-purple to-primary-red text-transparent bg-clip-text">
+        Save Question
+      </span>
+    </button>
   );
 };
 
