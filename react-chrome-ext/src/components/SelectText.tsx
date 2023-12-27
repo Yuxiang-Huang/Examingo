@@ -78,10 +78,9 @@ const SelectText: React.FC<SelectTextProps> = ({
     getContext().then((result) => {
       if (result?.context != undefined)
         getQuestionSet({ context: result?.context }).then((questionSet) => {
-          console.log(questionSet);
-          console.log(JSON.stringify(questionSet));
-          // let array = questionSet.split("\n");
-          // setQuestion(array[{"\n  \"question\"]);
+          const data = JSON.parse(questionSet);
+          setQuestion(data.question);
+          setChoices([data.a, data.b, data.c, data.d]);
         });
     });
   };

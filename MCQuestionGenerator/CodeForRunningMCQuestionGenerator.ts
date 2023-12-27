@@ -24,7 +24,12 @@ fetch(
   })
   .then((data) => {
     console.log(data);
-    console.log(JSON.parse(data));
+    console.log(JSON.parse(data.body).question);
+    console.log(JSON.parse(data.body).a);
+    console.log(JSON.parse(data.body).b);
+    console.log(JSON.parse(data.body).c);
+    console.log(JSON.parse(data.body).d);
+    console.log(JSON.parse(data.body).correctAnswerChoice);
   })
   .catch((error) => {
     console.error("There was a problem with the fetch operation:", error);
