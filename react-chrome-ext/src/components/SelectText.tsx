@@ -8,7 +8,36 @@ interface SelectTextProps {
   setChoices: (choices: string[]) => void;
 }
 
-const getOutput = () => {
+interface InputDataForMC {
+  context: string;
+}
+
+const callChatGPTAPI = (inputContext: InputDataForMC) => {
+  fetch(
+    "https://gtevhdluc3.execute-api.us-east-1.amazonaws.com/default/examingoChatGPT",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inputContext),
+    }
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json() as Promise<any>;
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+};
+
+const getContext = () => {
   chrome.tabs
     .query({ active: true, currentWindow: true })
     .then(function (tabs) {
@@ -21,8 +50,11 @@ const getOutput = () => {
         });
     })
     .then(function (results) {
-      if (results != undefined) {
-        console.log(results[0].result);
+      if (results != undefined && results[0].result != undefined) {
+        const inputContext: InputDataForMC = {
+          context: results[0].result,
+        };
+        callChatGPTAPI(inputContext);
       }
     })
     .catch(function (error) {
