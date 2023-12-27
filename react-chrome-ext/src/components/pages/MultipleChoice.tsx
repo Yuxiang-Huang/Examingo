@@ -4,13 +4,13 @@ import SaveQuestionButton from "../SaveQuestionButton";
 import LogoText from "../LogoText";
 import Question from "../Question";
 import SelectText from "../SelectText";
-import MultipleChoiceSet from "../MultipleChoiceSet";
+import MultipleChoiceSet, { ChoiceAttributes } from "../MultipleChoiceSet";
 
 const MultipleChoice = () => {
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
   const [generated, setGenerated] = useState<boolean>(false);
   const [question, setQuestion] = useState<string>("");
-  const [choices, setChoices] = useState<string[]>([]);
+  const [choices, setChoices] = useState<ChoiceAttributes[]>([]);
 
   return (
     <div>

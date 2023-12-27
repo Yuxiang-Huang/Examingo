@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import LogoText from "./LogoText";
 import Question from "./Question";
+import { ChoiceAttributes } from "./MultipleChoiceSet";
 
 interface SelectTextProps {
   setGenerated: (generated: boolean) => void;
   setQuestion: (question: string) => void;
-  setChoices: (choices: string[]) => void;
+  setChoices: (choices: ChoiceAttributes[]) => void;
 }
 
 interface InputDataForMC {
@@ -80,7 +81,12 @@ const SelectText: React.FC<SelectTextProps> = ({
         getQuestionSet({ context: result?.context }).then((questionSet) => {
           const data = JSON.parse(questionSet);
           setQuestion(data.question);
-          setChoices([data.a, data.b, data.c, data.d]);
+          setChoices([
+            { text: data.a, isCorrect: data.correctAnswerChoice == "a" },
+            { text: data.b, isCorrect: data.correctAnswerChoice == "b" },
+            { text: data.c, isCorrect: data.correctAnswerChoice == "c" },
+            { text: data.d, isCorrect: data.correctAnswerChoice == "d" },
+          ]);
         });
     });
   };

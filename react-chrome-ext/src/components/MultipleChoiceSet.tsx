@@ -3,11 +3,16 @@ import MultipleChoiceButton from "./MultipleChoiceButton";
 import SaveQuestionButton from "./SaveQuestionButton";
 import Question from "./Question";
 
+export interface ChoiceAttributes {
+  text: string;
+  isCorrect: boolean;
+}
+
 interface MultipleChoiceSetProps {
   isRevealed: boolean;
   setIsRevealed: (isRevealed: boolean) => void;
   question: string;
-  choices: string[];
+  choices: ChoiceAttributes[];
 }
 
 const MultipleChoiceSet: React.FC<MultipleChoiceSetProps> = ({
@@ -16,12 +21,12 @@ const MultipleChoiceSet: React.FC<MultipleChoiceSetProps> = ({
   question,
   choices,
 }) => {
-  const renderMultipleChoiceButtons = (choices: string[]) => {
+  const renderMultipleChoiceButtons = (choices: ChoiceAttributes[]) => {
     return choices.map((choice) => {
       return (
         <MultipleChoiceButton
-          optionText={choice}
-          isCorrect={false}
+          optionText={choice.text}
+          isCorrect={choice.isCorrect}
           isRevealed={isRevealed}
           setIsRevealed={setIsRevealed}
         />
