@@ -31,8 +31,6 @@ const HomePage = () => {
       />
 
       <NavButton buttonText="Personalize Learning" clickFunction={() => {}} />
-
-      <SelectText />
     </div>
   );
 };

@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import LogoText from "./LogoText";
 import Question from "./Question";
 
+interface SelectTextProps {
+  setGenerated: (generated: boolean) => void;
+  setQuestion: (question: string) => void;
+  setChoices: (choices: string[]) => void;
+}
+
 const getOutput = () => {
   chrome.tabs
     .query({ active: true, currentWindow: true })
@@ -31,13 +37,20 @@ function DOMtoString() {
   return "";
 }
 
-const SelectText = () => {
+const SelectText: React.FC<SelectTextProps> = ({
+  setGenerated,
+  setQuestion,
+  setChoices,
+}) => {
+  const generate = () => {
+    setGenerated(true);
+  };
+
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center text-center">
       <Question questionText="Select Passage to Generate Questions From" />
-      <button className="border" onClick={getOutput}>
-        {" "}
-        Generate{" "}
+      <button className="border" onClick={generate}>
+        Generate
       </button>
     </div>
   );
