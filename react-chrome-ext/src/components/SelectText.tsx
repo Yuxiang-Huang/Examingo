@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LogoText from "./LogoText";
 import Question from "./Question";
+import CheckAnswerButton from "./CheckAnswerButton";
 
 const getOutput = () => {
   chrome.tabs
@@ -35,10 +36,9 @@ const SelectText = () => {
   return (
     <div>
       <Question questionText="Select Passage to Generate Questions From" />
-      <button className="border" onClick={getOutput}>
-        {" "}
-        Generate{" "}
-      </button>
+      <div className="mt-12 h-4 mx-auto w-9/12">
+        <CheckAnswerButton checkAnswerFunction={getOutput} buttonText="Generate Question"/>
+      </div>
     </div>
   );
 };
