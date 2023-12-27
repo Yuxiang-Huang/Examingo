@@ -3,13 +3,13 @@ import MultipleChoiceButton from "../MultipleChoiceButton";
 import SaveQuestionButton from "../SaveQuestionButton";
 import LogoText from "../LogoText";
 import Question from "../Question";
-import SelectText from "./SelectText";
+import SelectText from "../SelectText";
 import MultipleChoiceSet from "../MultipleChoiceSet";
 import Loading from "../Loading";
 
 const MultipleChoice = () => {
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
-  const [selectedText, setIsSelectedText] = useState<string>("e");
+  const [selectedText, setIsSelectedText] = useState<string>("");
   const [question, setQuestion] = useState<string>("");
   const [choices, setChoices] = useState<string[]>([]);
 
