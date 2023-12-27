@@ -12,8 +12,8 @@ interface InputDataForMC {
   context: string;
 }
 
-const callChatGPTAPI = (inputContext: InputDataForMC) => {
-  fetch(
+const getQuestionSet = async (inputContext: InputDataForMC) => {
+  return fetch(
     "https://gtevhdluc3.execute-api.us-east-1.amazonaws.com/default/examingoChatGPT",
     {
       method: "POST",
@@ -30,15 +30,15 @@ const callChatGPTAPI = (inputContext: InputDataForMC) => {
       return response.json() as Promise<any>;
     })
     .then((data) => {
-      console.log(data);
+      return data.body;
     })
     .catch((error) => {
       console.error("There was a problem with the fetch operation:", error);
     });
 };
 
-const getContext = () => {
-  chrome.tabs
+const getContext = async () => {
+  return chrome.tabs
     .query({ active: true, currentWindow: true })
     .then(function (tabs) {
       var activeTab = tabs[0];
@@ -51,10 +51,9 @@ const getContext = () => {
     })
     .then(function (results) {
       if (results != undefined && results[0].result != undefined) {
-        const inputContext: InputDataForMC = {
+        return {
           context: results[0].result,
         };
-        callChatGPTAPI(inputContext);
       }
     })
     .catch(function (error) {
@@ -76,6 +75,15 @@ const SelectText: React.FC<SelectTextProps> = ({
 }) => {
   const generate = () => {
     setGenerated(true);
+    getContext().then((result) => {
+      if (result?.context != undefined)
+        getQuestionSet({ context: result?.context }).then((questionSet) => {
+          console.log(questionSet);
+          console.log(JSON.stringify(questionSet));
+          // let array = questionSet.split("\n");
+          // setQuestion(array[{"\n  \"question\"]);
+        });
+    });
   };
 
   return (
