@@ -20,6 +20,7 @@ fetch('https://gtevhdluc3.execute-api.us-east-1.amazonaws.com/default/examingoCh
         return response.json() as Promise<any>;
     })
     .then(data => {
+        console.log(typeof (data['body']));
         console.log(data);
     })
     .catch(error => {
