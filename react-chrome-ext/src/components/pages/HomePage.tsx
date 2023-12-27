@@ -4,6 +4,7 @@ import { Readability } from "@mozilla/readability";
 import { useState } from "react";
 import LogoText from "../LogoText";
 import NavButton from "../NavButton";
+import SelectText from "../SelectText";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -15,33 +16,6 @@ const HomePage = () => {
   const goToResolveQuestionPage = () => {
     navigate("/ResolveQuestion");
   };
-
-  const testReadibility = () => {
-    chrome.tabs
-      .query({ active: true, currentWindow: true })
-      .then(function (tabs) {
-        var activeTab = tabs[0];
-        var activeTabId = activeTab.id;
-        if (activeTabId != undefined)
-          return chrome.scripting.executeScript({
-            target: { tabId: activeTabId },
-            func: DOMtoString,
-          });
-      })
-      .then(function (results) {
-        if (results != undefined)
-          console.log(JSON.stringify(results[0].result));
-      })
-      .catch(function (error) {
-        alert("There was an error injecting script : \n" + error.message);
-      });
-  };
-
-  function DOMtoString() {
-    // var article = new Readability(document).parse();
-    // console.log(article?.content);
-    return document.documentElement.innerHTML;
-  }
 
   return (
     <div className="flex flex-col items-center justify-center text-center">
@@ -56,15 +30,9 @@ const HomePage = () => {
         clickFunction={goToResolveQuestionPage}
       />
 
-      <NavButton
-        buttonText="Personalize Learning"
-        clickFunction={testReadibility}
-      />
+      <NavButton buttonText="Personalize Learning" clickFunction={() => {}} />
 
-      <button className="underline m-4">
-        <a href="#">Personalize Learning</a>
-      </button>
-      <button onClick={testReadibility}>Test Usability</button>
+      <SelectText />
     </div>
   );
 };
