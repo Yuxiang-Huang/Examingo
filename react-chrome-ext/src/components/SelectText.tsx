@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import LogoText from "./LogoText";
 import Question from "./Question";
 import CheckAnswerButton from "./CheckAnswerButton";
 import { ChoiceAttributes } from "./MultipleChoiceSet";
@@ -45,14 +44,18 @@ const getContext = async () => {
     .then(function (tabs) {
       var activeTab = tabs[0];
       var activeTabId = activeTab.id;
-      if (activeTabId != undefined)
+      if (activeTabId !== undefined)
         return chrome.scripting.executeScript({
           target: { tabId: activeTabId },
           func: DOMtoString,
         });
     })
     .then(function (results) {
-      if (results != undefined && results[0].result != undefined) {
+      if (
+        results !== undefined &&
+        results[0].result !== undefined &&
+        results[0].result !== null
+      ) {
         return {
           context: results[0].result,
         };
@@ -79,17 +82,17 @@ const SelectText: React.FC<SelectTextProps> = ({
 
   const generate = () => {
     getContext().then((result) => {
-      if (result?.context != undefined) {
-        if (result.context != "") {
+      if (result?.context !== undefined) {
+        if (result.context !== "") {
           setGenerated(true);
           getQuestionSet({ context: result?.context }).then((questionSet) => {
             const data = JSON.parse(questionSet);
             setQuestion(data.question);
             setChoices([
-              { text: data.a, isCorrect: data.correctAnswerChoice == "a" },
-              { text: data.b, isCorrect: data.correctAnswerChoice == "b" },
-              { text: data.c, isCorrect: data.correctAnswerChoice == "c" },
-              { text: data.d, isCorrect: data.correctAnswerChoice == "d" },
+              { text: data.a, isCorrect: data.correctAnswerChoice === "a" },
+              { text: data.b, isCorrect: data.correctAnswerChoice === "b" },
+              { text: data.c, isCorrect: data.correctAnswerChoice === "c" },
+              { text: data.d, isCorrect: data.correctAnswerChoice === "d" },
             ]);
           });
         } else {

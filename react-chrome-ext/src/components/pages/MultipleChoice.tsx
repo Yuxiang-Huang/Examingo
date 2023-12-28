@@ -20,8 +20,8 @@ const MultipleChoice = () => {
           setChoices={setChoices}
         />
       )}
-      {generated && question == "" && <Loading />}
-      {generated && question != "" && (
+      {generated && question === "" && <Loading />}
+      {generated && question !== "" && (
         <MultipleChoiceSet
           isRevealed={isRevealed}
           setIsRevealed={setIsRevealed}
