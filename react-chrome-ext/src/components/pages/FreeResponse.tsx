@@ -1,36 +1,37 @@
-import { useState } from "react";
-import CheckAnswerButton from "../CheckAnswerButton";
+import React, { useState } from "react";
 import LogoText from "../LogoText";
-import Question from "../Question";
-import SaveQuestionButton from "../SaveQuestionButton";
-import TextBox from "../TextBox";
+import SelectText from "../SelectText";
+import Loading from "../Loading";
+import { ChoiceAttributes } from "../MultipleChoiceSet";
+import FreeResponseSet from "../FreeResponseSet";
 
 const FreeResponse = () => {
-  const [displayAnswer, setDisplayAnswer] = useState(false);
+  const [generated, setGenerated] = useState<boolean>(false);
+  const [question, setQuestion] = useState<string>("");
+  const [choices, setChoices] = useState<ChoiceAttributes[]>([]);
+
+  let answer = "";
+
+  choices.forEach((element) => {
+    if (element.isCorrect) {
+      answer = element.text;
+    }
+  });
 
   return (
     <div>
       <LogoText />
-      <Question questionText="What is democracy?" />
-      <TextBox
-        initialText=""
-        isReadOnly={displayAnswer}
-        textFunction={() => false}
-      />
-      {displayAnswer && (
-        <TextBox
-          initialText="I don't know."
-          isReadOnly={true}
-          textFunction={() => false}
+      {!generated && (
+        <SelectText
+          setGenerated={setGenerated}
+          setQuestion={setQuestion}
+          setChoices={setChoices}
         />
       )}
-      {!displayAnswer && (
-        <CheckAnswerButton
-          buttonText="Check"
-          checkAnswerFunction={() => setDisplayAnswer(true)}
-        />
+      {generated && question == "" && <Loading />}
+      {generated && question != "" && (
+        <FreeResponseSet question={question} answer={answer} />
       )}
-      <SaveQuestionButton saveFunction={() => false} />
     </div>
   );
 };
