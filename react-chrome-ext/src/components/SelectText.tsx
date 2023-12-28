@@ -79,7 +79,6 @@ const SelectText: React.FC<SelectTextProps> = ({
 
   const generate = () => {
     getContext().then((result) => {
-      console.log(result?.context);
       if (result?.context != undefined) {
         if (result.context != "") {
           setGenerated(true);
