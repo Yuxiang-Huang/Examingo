@@ -7,8 +7,8 @@ import axios from "axios";
 
 const HomePage = () => {
   axios
-    .get("/")
-    .then((response) => console.log(response.data))
+    .get("http://localhost:8000/")
+    .then((response) => console.log(response.data[0].name))
     .catch((error) => console.error(error));
 
   const navigate = useNavigate();
