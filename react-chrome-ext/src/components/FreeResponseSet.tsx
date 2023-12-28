@@ -1,6 +1,5 @@
 import { useState } from "react";
 import CheckAnswerButton from "./CheckAnswerButton";
-import LogoText from "./LogoText";
 import Question from "./Question";
 import SaveQuestionButton from "./SaveQuestionButton";
 import TextBox from "./TextBox";
