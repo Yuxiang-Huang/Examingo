@@ -23,8 +23,15 @@ const MultipleChoice = () => {
           setChoices={setChoices}
         />
       )}
-      {generated && question == "" && <Loading/>}
-      {generated && question != "" && <MultipleChoiceSet isRevealed={isRevealed} setIsRevealed={setIsRevealed} question={question} choices={choices} />}
+      {generated && question == "" && <Loading />}
+      {generated && question != "" && (
+        <MultipleChoiceSet
+          isRevealed={isRevealed}
+          setIsRevealed={setIsRevealed}
+          question={question}
+          choices={choices}
+        />
+      )}
     </div>
   );
 };
