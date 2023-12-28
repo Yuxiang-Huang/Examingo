@@ -19,7 +19,6 @@ model Post {
 
 model User {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  email   String   @unique
   name    String?
   address Address?
   posts   Post[]

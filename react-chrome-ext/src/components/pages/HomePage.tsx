@@ -2,17 +2,17 @@ import { useNavigate } from "react-router-dom";
 // import ExamingoLogo from "./components/ExamingoLogo.png";
 import LogoText from "../LogoText";
 import NavButton from "../NavButton";
-
 import axios from "axios";
+import type { User } from "@prisma/client";
 
 const HomePage = () => {
-  // axios
-  //   .get("http://localhost:8000/")
-  //   .then((response) => console.log(response.data[0].name))
-  //   .catch((error) => console.error(error));
+  axios
+    .get<User[]>("http://localhost:8000/")
+    .then((response) => console.log(response.data))
+    .catch((error) => console.error(error));
 
   axios
-    .post("http://localhost:8000/create")
+    .post("http://localhost:8000/create", { name: "Yuxiang" })
     .then(() => console.log("Created"))
     .catch((err) => {
       console.error(err);

@@ -5,6 +5,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 const app = express();
 
+app.use(express.json());
 app.use(cors());
 
 app.get("/", async (req, res) => {
@@ -13,17 +14,10 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/create", async function (req, res) {
+  const { name } = req.body;
   const newUser = await prisma.user.create({
     data: {
-      name: "Yuxiang",
-      email: "hello@prisma.com",
-      posts: {
-        create: {
-          title: "My second post",
-          body: "Lots of really interesting stuff",
-          slug: "my-second-post",
-        },
-      },
+      name: name,
     },
   });
 
