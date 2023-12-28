@@ -12,7 +12,7 @@ def lambda_handler(event, context):
     model="gpt-3.5-turbo-1106",
     response_format={ "type": "json_object" },
     messages=[
-      {"role": "system", "content": "Create a multiple choice question based solely on user content without completing it. Return in JSON with keys: question, a, b, c, d, and correctAnswerChoice"},
+      {"role": "system", "content": "Form a formal question based solely on the information in user content. Add multiple choice answers. Return in JSON with keys: question, a, b, c, d, and correctAnswerChoice"},
       {"role": "user", "content": context}
     ]
   )

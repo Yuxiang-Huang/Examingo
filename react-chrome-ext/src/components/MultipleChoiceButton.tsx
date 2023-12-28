@@ -39,7 +39,7 @@ const MultipleChoiceButton: React.FC<MultipleChoiceButtonProps> = ({ optionText,
     }, [isRevealed]);
 
     return (
-        <div className={border + " " + "w-full min-h-12 relative flex flex-col justify-center rounded-xl my-2"} onClick={revealChangeBorder} onMouseOver={mouseOverHandler} onMouseOut={mouseOutHandler}>
+        <div className={border + " " + "w-full min-h-12 relative flex flex-col justify-center rounded-xl my-4"} onClick={revealChangeBorder} onMouseOver={mouseOverHandler} onMouseOut={mouseOutHandler}>
             <div className={radioButtonStyling + " " + "absolute  w-4 h-4 top-1/2 left-2 -translate-y-1/2 rounded-full"}></div>
             <div className="ml-8">{optionText}</div>
         </div>
