@@ -12,6 +12,24 @@ app.get("/", async (req, res) => {
   res.json(users);
 });
 
+app.post("/create", async function (req, res) {
+  const newUser = await prisma.user.create({
+    data: {
+      name: "Yuxiang",
+      email: "hello@prisma.com",
+      posts: {
+        create: {
+          title: "My second post",
+          body: "Lots of really interesting stuff",
+          slug: "my-second-post",
+        },
+      },
+    },
+  });
+
+  res.json();
+});
+
 app.listen(8000, () =>
   console.log("REST API server ready at: http://localhost:8000/")
 );

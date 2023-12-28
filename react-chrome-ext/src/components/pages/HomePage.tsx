@@ -6,10 +6,17 @@ import NavButton from "../NavButton";
 import axios from "axios";
 
 const HomePage = () => {
+  // axios
+  //   .get("http://localhost:8000/")
+  //   .then((response) => console.log(response.data[0].name))
+  //   .catch((error) => console.error(error));
+
   axios
-    .get("http://localhost:8000/")
-    .then((response) => console.log(response.data[0].name))
-    .catch((error) => console.error(error));
+    .post("http://localhost:8000/create")
+    .then(() => console.log("Created"))
+    .catch((err) => {
+      console.error(err);
+    });
 
   const navigate = useNavigate();
 
