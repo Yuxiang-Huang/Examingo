@@ -75,28 +75,42 @@ const SelectText: React.FC<SelectTextProps> = ({
   setQuestion,
   setChoices,
 }) => {
+  const [warningDisplay, setWarningDisplay] = useState<boolean>(false);
+
   const generate = () => {
-    setGenerated(true);
     getContext().then((result) => {
-      if (result?.context != undefined)
-        getQuestionSet({ context: result?.context }).then((questionSet) => {
-          const data = JSON.parse(questionSet);
-          setQuestion(data.question);
-          setChoices([
-            { text: data.a, isCorrect: data.correctAnswerChoice == "a" },
-            { text: data.b, isCorrect: data.correctAnswerChoice == "b" },
-            { text: data.c, isCorrect: data.correctAnswerChoice == "c" },
-            { text: data.d, isCorrect: data.correctAnswerChoice == "d" },
-          ]);
-        });
+      console.log(result?.context);
+      if (result?.context != undefined) {
+        if (result.context != "") {
+          setGenerated(true);
+          getQuestionSet({ context: result?.context }).then((questionSet) => {
+            const data = JSON.parse(questionSet);
+            setQuestion(data.question);
+            setChoices([
+              { text: data.a, isCorrect: data.correctAnswerChoice == "a" },
+              { text: data.b, isCorrect: data.correctAnswerChoice == "b" },
+              { text: data.c, isCorrect: data.correctAnswerChoice == "c" },
+              { text: data.d, isCorrect: data.correctAnswerChoice == "d" },
+            ]);
+          });
+        } else {
+          setWarningDisplay(true);
+        }
+      } else {
+        setWarningDisplay(true);
+      }
     });
   };
 
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <Question questionText="Select Passage to Generate Questions From" />
+      {warningDisplay && <Question questionText="Please select text!" />}
       <div className="mt-12 h-4 mx-auto w-9/12">
-        <CheckAnswerButton checkAnswerFunction={generate} buttonText="Generate Question"/>
+        <CheckAnswerButton
+          checkAnswerFunction={generate}
+          buttonText="Generate Question"
+        />
       </div>
     </div>
   );

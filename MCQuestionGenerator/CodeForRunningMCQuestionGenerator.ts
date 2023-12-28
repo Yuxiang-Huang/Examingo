@@ -3,7 +3,8 @@ interface InputDataForMC {
 }
 
 const inputContext: InputDataForMC = {
-  context: "Tyson has twenty cats",
+  context:
+    "The incredible amount of data on the Internet is a rich resource for any field of research or personal interest. To effectively harvest that data, you’ll need to become skilled at ",
 };
 
 fetch(
