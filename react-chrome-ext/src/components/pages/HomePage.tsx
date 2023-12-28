@@ -6,7 +6,10 @@ import NavButton from "../NavButton";
 import axios from "axios";
 
 const HomePage = () => {
-  console.log(axios.get("/all"));
+  axios
+    .get("/")
+    .then((response) => console.log(response.data))
+    .catch((error) => console.error(error));
 
   const navigate = useNavigate();
 
