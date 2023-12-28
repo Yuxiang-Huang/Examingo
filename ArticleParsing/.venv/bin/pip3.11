@@ -1,4 +1,4 @@
-#!/Users/alexcheung/Documents/GitHub/Examingo/ArticleParsing/.venv/bin/python3.11
+#!/Users/yuxianghuang/Projects/Examingo/ArticleParsing/.venv/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys
