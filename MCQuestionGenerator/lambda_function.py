@@ -9,9 +9,10 @@ def lambda_handler(event, context):
   context = event['context']
   
   response = client.chat.completions.create(
-    model="gpt-3.5-turbo",
+    model="gpt-3.5-turbo-1106",
+    response_format={ "type": "json_object" },
     messages=[
-      {"role": "system", "content": "Create a multiple choice question based on user input in a JSON object with keys question, a, b, c, d, and correctAnswerChoice"},
+      {"role": "system", "content": "Create a multiple choice question based solely on user content without completing it. Return in JSON with keys: question, a, b, c, d, and correctAnswerChoice"},
       {"role": "user", "content": context}
     ]
   )
