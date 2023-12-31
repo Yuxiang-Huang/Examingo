@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Question from "./Question";
 import CheckAnswerButton from "./CheckAnswerButton";
 import { ChoiceAttributes } from "./MultipleChoiceSet";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 interface SelectTextProps {
   setGenerated: (generated: boolean) => void;
@@ -67,11 +68,34 @@ const getContext = async () => {
 };
 
 function DOMtoString() {
-  if (window.getSelection) {
-    return window.getSelection()?.anchorNode?.textContent;
-  }
-  return "";
+  return document.body.innerHTML;
 }
+
+const summarize = async (text: string) => {
+  try {
+    // Configure the Axios request
+    const config: AxiosRequestConfig = {
+      method: "post",
+      url: "https://1t12e8sn7i.execute-api.us-east-1.amazonaws.com/Dev",
+      data: {
+        html_doc: text,
+      },
+      headers: {
+        "Content-Type": "application/json",
+        // Add any other headers if needed (e.g., Authorization)
+      },
+    };
+
+    // Make the POST request
+    const response: AxiosResponse = await axios(config);
+
+    // Handle the response
+    return response.data;
+    // Add your logic to handle the response data here
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
 
 const SelectText: React.FC<SelectTextProps> = ({
   setGenerated,
@@ -81,11 +105,12 @@ const SelectText: React.FC<SelectTextProps> = ({
   const [warningDisplay, setWarningDisplay] = useState<boolean>(false);
 
   const generate = () => {
+    setGenerated(true);
     getContext().then((result) => {
-      if (result?.context !== undefined) {
-        if (result.context !== "") {
-          setGenerated(true);
-          getQuestionSet({ context: result?.context }).then((questionSet) => {
+      if (result !== undefined) {
+        summarize(result.context).then((summary) => {
+          console.log(summary.body);
+          getQuestionSet({ context: summary.body }).then((questionSet) => {
             const data = JSON.parse(questionSet);
             setQuestion(data.question);
             setChoices([
@@ -95,11 +120,7 @@ const SelectText: React.FC<SelectTextProps> = ({
               { text: data.d, isCorrect: data.correctAnswerChoice === "d" },
             ]);
           });
-        } else {
-          setWarningDisplay(true);
-        }
-      } else {
-        setWarningDisplay(true);
+        });
       }
     });
   };

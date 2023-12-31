@@ -6,18 +6,18 @@ import axios from "axios";
 import type { User } from "@prisma/client";
 
 const HomePage = () => {
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "https://ozb4bxgszg.execute-api.us-east-1.amazonaws.com/Dev"
-      );
-      console.log(response.data.body);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       "https://ozb4bxgszg.execute-api.us-east-1.amazonaws.com/Dev"
+  //     );
+  //     console.log(response.data.body);
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
 
-  fetchData();
+  // fetchData();
 
   // axios
   //   .get<User[]>("http://localhost:8000/")
