@@ -25,7 +25,7 @@ const HomePage = () => {
   //   .catch((error) => console.error(error));
 
   // axios
-  //   .post("http://localhost:8000/create", { name: "Yuxiang" })
+  //   .post("http://localhost:8000/create", { name: "Diego" })
   //   .then(() => console.log("Created"))
   //   .catch((err) => {
   //     console.error(err);
