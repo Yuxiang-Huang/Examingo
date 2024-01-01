@@ -12,6 +12,7 @@ interface SelectTextProps {
 
 interface InputDataForMC {
   context: string;
+  numQuestions?: number;
 }
 
 const getQuestionSet = async (inputContext: InputDataForMC) => {
@@ -109,15 +110,15 @@ const SelectText: React.FC<SelectTextProps> = ({
     getContext().then((result) => {
       if (result !== undefined) {
         summarize(result.context).then((summary) => {
-          console.log(summary.body);
-          getQuestionSet({ context: summary.body }).then((questionSet) => {
-            const data = JSON.parse(questionSet);
-            setQuestion(data.question);
+          getQuestionSet({ context: summary.body, numQuestions: 1 }).then((questionSets) => {
+            const data = JSON.parse(questionSets);
+            const questionOne = data.questions[0];
+            setQuestion(questionOne.question);
             setChoices([
-              { text: data.a, isCorrect: data.correctAnswerChoice === "a" },
-              { text: data.b, isCorrect: data.correctAnswerChoice === "b" },
-              { text: data.c, isCorrect: data.correctAnswerChoice === "c" },
-              { text: data.d, isCorrect: data.correctAnswerChoice === "d" },
+              { text: questionOne.a, isCorrect: questionOne.correctAnswerChoice === "a" },
+              { text: questionOne.b, isCorrect: questionOne.correctAnswerChoice === "b" },
+              { text: questionOne.c, isCorrect: questionOne.correctAnswerChoice === "c" },
+              { text: questionOne.d, isCorrect: questionOne.correctAnswerChoice === "d" },
             ]);
           });
         });
