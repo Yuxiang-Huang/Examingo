@@ -14,10 +14,11 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/create", async function (req, res) {
-  const { name } = req.body;
+  const { username, password } = req.body;
   const newUser = await prisma.user.create({
     data: {
-      name: name,
+      username: username,
+      password: password,
     },
   });
 
