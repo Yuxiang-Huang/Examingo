@@ -9,7 +9,12 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", async (req, res) => {
-  const users = await prisma.user.findMany();
+  const usernameValue: string = req.query.username as string;
+  const users = await prisma.user.findFirst({
+    where: {
+      username: usernameValue,
+    },
+  });
   res.json(users);
 });
 

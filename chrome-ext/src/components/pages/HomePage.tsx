@@ -42,7 +42,7 @@ const HomePage = () => {
   };
 
   const goToLoginPage = () => {
-    navigate("/SignUp");
+    navigate("/Login");
   };
 
   return (

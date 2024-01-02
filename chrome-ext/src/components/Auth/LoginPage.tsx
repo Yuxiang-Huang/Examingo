@@ -2,6 +2,8 @@ import { useRef } from "react";
 import LogoText from "../LogoText";
 import NavButton from "../NavButton";
 import InputField from "./InputField";
+import axios from "axios";
+import bcrypt from "bcryptjs-react";
 
 const LoginPage = ({}) => {
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -9,8 +11,15 @@ const LoginPage = ({}) => {
 
   const handleLogin = () => {
     if (usernameRef.current && passwordRef.current) {
-      console.log(usernameRef.current.value);
-      console.log(passwordRef.current.value);
+      const curPassword = passwordRef.current.value;
+      axios
+        .get(`http://localhost:8000/`, {
+          params: { username: usernameRef.current.value },
+        })
+        .then((response) => {
+          console.log(bcrypt.compareSync(curPassword, response.data.password));
+        })
+        .catch((error) => console.error(error));
     }
   };
 

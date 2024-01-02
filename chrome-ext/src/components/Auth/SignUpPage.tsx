@@ -11,8 +11,7 @@ const SignUp = () => {
 
   const hangleSignUp = () => {
     if (usernameRef.current && passwordRef.current) {
-      var salt = bcrypt.genSaltSync(10);
-      var password = bcrypt.hashSync(passwordRef.current.value, salt);
+      var password = bcrypt.hashSync(passwordRef.current.value, 10);
       axios
         .post("http://localhost:8000/create", {
           username: usernameRef.current.value,
