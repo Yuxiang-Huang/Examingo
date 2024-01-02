@@ -41,6 +41,10 @@ const HomePage = () => {
     navigate("/ResolveQuestion");
   };
 
+  const goToLoginPage = () => {
+    navigate("/Login");
+  };
+
   return (
     <div className="flex flex-col items-center justify-center text-center">
       {/* <img src={ExamingoLogo} className="Logo" alt="logo" /> */}
@@ -54,7 +58,10 @@ const HomePage = () => {
         clickFunction={goToResolveQuestionPage}
       />
 
-      <NavButton buttonText="Personalize Learning" clickFunction={() => {}} />
+      <NavButton
+        buttonText="Personalize Learning"
+        clickFunction={goToLoginPage}
+      />
     </div>
   );
 };
