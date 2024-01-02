@@ -4,8 +4,15 @@ import NavButton from "../NavButton";
 import InputField from "./InputField";
 import axios from "axios";
 import bcrypt from "bcryptjs-react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
+  const goToLoginPage = () => {
+    navigate("/Login");
+  };
+
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -17,7 +24,7 @@ const SignUp = () => {
           username: usernameRef.current.value,
           password: password,
         })
-        .then(() => console.log("Created"))
+        .then((response) => alert(response.data.status))
         .catch((err) => {
           console.error(err);
         });
@@ -29,7 +36,11 @@ const SignUp = () => {
       <LogoText />
       <InputField label="Username" textRef={usernameRef} />
       <InputField label="Password" textRef={passwordRef} />
-      <NavButton buttonText={"Login"} clickFunction={hangleSignUp} />
+      <NavButton buttonText={"Sign Up"} clickFunction={hangleSignUp} />
+      <NavButton
+        buttonText={"Already has account"}
+        clickFunction={goToLoginPage}
+      />
     </div>
   );
 };

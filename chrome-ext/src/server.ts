@@ -10,24 +10,32 @@ app.use(cors());
 
 app.get("/", async (req, res) => {
   const usernameValue: string = req.query.username as string;
-  const users = await prisma.user.findFirst({
+  const user = await prisma.user.findUnique({
     where: {
       username: usernameValue,
     },
   });
-  res.json(users);
+  res.json(user);
 });
 
 app.post("/create", async function (req, res) {
   const { username, password } = req.body;
-  const newUser = await prisma.user.create({
-    data: {
+  const user = await prisma.user.findUnique({
+    where: {
       username: username,
-      password: password,
     },
   });
-
-  res.json();
+  if (user == null) {
+    const newUser = await prisma.user.create({
+      data: {
+        username: username,
+        password: password,
+      },
+    });
+    res.json({ status: 200 });
+  } else {
+    res.json({ status: 300 });
+  }
 });
 
 app.listen(8000, () =>
