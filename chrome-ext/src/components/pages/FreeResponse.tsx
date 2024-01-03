@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LogoText from "../LogoText";
 import SelectText from "../SelectText";
 import Loading from "../Loading";
 import { ChoiceAttributes } from "../MultipleChoiceSet";
 import FreeResponseSet from "../FreeResponseSet";
+import { MultipleChoiceSetProperties } from "./MultipleChoice";
 
 const FreeResponse = () => {
   const [generated, setGenerated] = useState<boolean>(false);
-  const [question, setQuestion] = useState<string>("");
-  const [choices, setChoices] = useState<ChoiceAttributes[]>([]);
+  const [questionSets, setQuestionSets] = useState<MultipleChoiceSetProperties[]>([]);
+  const [questionSetIndex, setQuestionSetIndex] = useState<number>(0);
+  const [answer, setAnswer] = useState<string>("");
 
-  let answer = "";
-
-  choices.forEach((element) => {
-    if (element.isCorrect) {
-      answer = element.text;
+  useEffect(() => {
+    if (questionSets.length > 0) {
+      questionSets[questionSetIndex].choices.forEach((element) => {
+        if (element.isCorrect) {
+          setAnswer(element.text);
+        }
+      });
     }
-  });
+  }, [questionSets]);
 
   return (
     <div>
@@ -24,13 +28,12 @@ const FreeResponse = () => {
       {!generated && (
         <SelectText
           setGenerated={setGenerated}
-          setQuestion={setQuestion}
-          setChoices={setChoices}
+          setQuestionSets={setQuestionSets}
         />
       )}
-      {generated && question === "" && <Loading />}
-      {generated && question !== "" && (
-        <FreeResponseSet question={question} answer={answer} />
+      {generated && questionSets.length === 0 && <Loading />}
+      {generated && questionSets.length > 0 && (
+        <FreeResponseSet question={questionSets[questionSetIndex].question} answer={answer} />
       )}
     </div>
   );

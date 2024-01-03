@@ -53,7 +53,6 @@ const HomePage = () => {
         buttonText="Resolve Questions"
         clickFunction={goToResolveQuestionPage}
       />
-
       <NavButton buttonText="Personalize Learning" clickFunction={() => {}} />
     </div>
   );

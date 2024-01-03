@@ -3,11 +3,12 @@ import Question from "./Question";
 import CheckAnswerButton from "./CheckAnswerButton";
 import { ChoiceAttributes } from "./MultipleChoiceSet";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { MultipleChoiceSetProperties } from "./pages/MultipleChoice";
+import Counter from "./Counter";
 
 interface SelectTextProps {
   setGenerated: (generated: boolean) => void;
-  setQuestion: (question: string) => void;
-  setChoices: (choices: ChoiceAttributes[]) => void;
+  setQuestionSets: (questionSets: MultipleChoiceSetProperties[] | ((prevQuestionSets: MultipleChoiceSetProperties[]) => MultipleChoiceSetProperties[])) => void;
 }
 
 interface InputDataForMC {
@@ -89,7 +90,6 @@ const summarize = async (text: string) => {
 
     // Make the POST request
     const response: AxiosResponse = await axios(config);
-
     // Handle the response
     return response.data;
     // Add your logic to handle the response data here
@@ -98,28 +98,46 @@ const summarize = async (text: string) => {
   }
 };
 
+interface JSONQuestionSet {
+  question: string;
+  a: string;
+  b: string;
+  c: string;
+  d: string;
+  correctAnswerChoice: "a" | "b" | "c" | "d";
+}
+
 const SelectText: React.FC<SelectTextProps> = ({
   setGenerated,
-  setQuestion,
-  setChoices,
+  setQuestionSets
 }) => {
-  const [warningDisplay, setWarningDisplay] = useState<boolean>(false);
+  const [warning, setWarning] = useState<boolean>(false);
+  const [questionsCount, setQuestionsCount] = useState<number>(2);
 
   const generate = () => {
     setGenerated(true);
     getContext().then((result) => {
       if (result !== undefined) {
         summarize(result.context).then((summary) => {
-          getQuestionSet({ context: summary.body, numQuestions: 1 }).then((questionSets) => {
+          getQuestionSet({ context: summary.body, numQuestions: questionsCount }).then((questionSets) => {
             const data = JSON.parse(questionSets);
-            const questionOne = data.questions[0];
-            setQuestion(questionOne.question);
-            setChoices([
-              { text: questionOne.a, isCorrect: questionOne.correctAnswerChoice === "a" },
-              { text: questionOne.b, isCorrect: questionOne.correctAnswerChoice === "b" },
-              { text: questionOne.c, isCorrect: questionOne.correctAnswerChoice === "c" },
-              { text: questionOne.d, isCorrect: questionOne.correctAnswerChoice === "d" },
-            ]);
+            const questionsArray = data.questions as JSONQuestionSet[];
+            console.log(questionsArray.length);
+            console.log(questionsCount);
+            questionsArray.forEach((questionSet) => {
+              setQuestionSets((prevQuestionSets) => [
+                ...prevQuestionSets,
+                {
+                  question: questionSet.question,
+                  choices: [
+                    { text: questionSet.a, isCorrect: questionSet.correctAnswerChoice === "a" },
+                    { text: questionSet.b, isCorrect: questionSet.correctAnswerChoice === "b" },
+                    { text: questionSet.c, isCorrect: questionSet.correctAnswerChoice === "c" },
+                    { text: questionSet.d, isCorrect: questionSet.correctAnswerChoice === "d" },
+                  ]
+                }
+              ]);
+            });
           });
         });
       }
@@ -128,12 +146,13 @@ const SelectText: React.FC<SelectTextProps> = ({
 
   return (
     <div className="flex flex-col items-center justify-center text-center">
-      <Question questionText="Select Passage to Generate Questions From" />
-      {warningDisplay && <Question questionText="Please select text!" />}
-      <div className="mt-12 h-4 mx-auto w-9/12">
+      <Question questionText="Multiple Choice" />
+      {warning && <Question questionText="Website too large. Please select text." />}
+      <div className="mt-2 mx-auto w-9/12">
+        <Counter count={questionsCount} setCount={setQuestionsCount} />
         <CheckAnswerButton
           checkAnswerFunction={generate}
-          buttonText="Generate Question"
+          buttonText="Generate Questions"
         />
       </div>
     </div>
