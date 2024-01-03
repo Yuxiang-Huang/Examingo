@@ -20,11 +20,14 @@ const SignUp = () => {
     if (usernameRef.current && passwordRef.current) {
       var password = bcrypt.hashSync(passwordRef.current.value, 10);
       axios
-        .post("http://localhost:8000/create", {
+        .post("https://bszoqhs7ce.execute-api.us-east-1.amazonaws.com/Dev", {
           username: usernameRef.current.value,
           password: password,
         })
-        .then((response) => alert(response.data.status))
+        .then((response) => {
+          console.log(response);
+          alert(response.data.statusCode);
+        })
         .catch((err) => {
           console.error(err);
         });

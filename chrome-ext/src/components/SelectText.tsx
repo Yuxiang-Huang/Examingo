@@ -74,7 +74,6 @@ function DOMtoString() {
 
 const summarize = async (text: string) => {
   try {
-    // Configure the Axios request
     const config: AxiosRequestConfig = {
       method: "post",
       url: "https://1t12e8sn7i.execute-api.us-east-1.amazonaws.com/Dev",
@@ -83,16 +82,12 @@ const summarize = async (text: string) => {
       },
       headers: {
         "Content-Type": "application/json",
-        // Add any other headers if needed (e.g., Authorization)
       },
     };
 
-    // Make the POST request
     const response: AxiosResponse = await axios(config);
 
-    // Handle the response
     return response.data;
-    // Add your logic to handle the response data here
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -110,17 +105,31 @@ const SelectText: React.FC<SelectTextProps> = ({
     getContext().then((result) => {
       if (result !== undefined) {
         summarize(result.context).then((summary) => {
-          getQuestionSet({ context: summary.body, numQuestions: 1 }).then((questionSets) => {
-            const data = JSON.parse(questionSets);
-            const questionOne = data.questions[0];
-            setQuestion(questionOne.question);
-            setChoices([
-              { text: questionOne.a, isCorrect: questionOne.correctAnswerChoice === "a" },
-              { text: questionOne.b, isCorrect: questionOne.correctAnswerChoice === "b" },
-              { text: questionOne.c, isCorrect: questionOne.correctAnswerChoice === "c" },
-              { text: questionOne.d, isCorrect: questionOne.correctAnswerChoice === "d" },
-            ]);
-          });
+          getQuestionSet({ context: summary.body, numQuestions: 1 }).then(
+            (questionSets) => {
+              const data = JSON.parse(questionSets);
+              const questionOne = data.questions[0];
+              setQuestion(questionOne.question);
+              setChoices([
+                {
+                  text: questionOne.a,
+                  isCorrect: questionOne.correctAnswerChoice === "a",
+                },
+                {
+                  text: questionOne.b,
+                  isCorrect: questionOne.correctAnswerChoice === "b",
+                },
+                {
+                  text: questionOne.c,
+                  isCorrect: questionOne.correctAnswerChoice === "c",
+                },
+                {
+                  text: questionOne.d,
+                  isCorrect: questionOne.correctAnswerChoice === "d",
+                },
+              ]);
+            }
+          );
         });
       }
     });
