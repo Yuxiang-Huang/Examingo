@@ -26,7 +26,11 @@ const SignUp = () => {
         })
         .then((response) => {
           console.log(response);
-          alert(response.data.statusCode);
+          if (response.data.statusCode === 200) {
+            alert("Success!");
+          } else if (response.data.statusCode === 209) {
+            alert("Username already used!");
+          }
         })
         .catch((err) => {
           console.error(err);
