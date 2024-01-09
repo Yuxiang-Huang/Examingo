@@ -122,8 +122,6 @@ const SelectText: React.FC<SelectTextProps> = ({
           getQuestionSet({ context: summary.body, numQuestions: questionsCount }).then((questionSets) => {
             const data = JSON.parse(questionSets);
             const questionsArray = data.questions as JSONQuestionSet[];
-            console.log(questionsArray.length);
-            console.log(questionsCount);
             questionsArray.forEach((questionSet) => {
               setQuestionSets((prevQuestionSets) => [
                 ...prevQuestionSets,
