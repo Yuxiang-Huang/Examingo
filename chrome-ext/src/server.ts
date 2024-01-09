@@ -9,19 +9,33 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", async (req, res) => {
-  const users = await prisma.user.findMany();
-  res.json(users);
+  const usernameValue: string = req.query.username as string;
+  const user = await prisma.user.findUnique({
+    where: {
+      username: usernameValue,
+    },
+  });
+  res.json(user);
 });
 
 app.post("/create", async function (req, res) {
-  const { name } = req.body;
-  const newUser = await prisma.user.create({
-    data: {
-      name: name,
+  const { username, password } = req.body;
+  const user = await prisma.user.findUnique({
+    where: {
+      username: username,
     },
   });
-
-  res.json();
+  if (user == null) {
+    const newUser = await prisma.user.create({
+      data: {
+        username: username,
+        password: password,
+      },
+    });
+    res.json({ status: 200 });
+  } else {
+    res.json({ status: 209 });
+  }
 });
 
 app.listen(8000, () =>

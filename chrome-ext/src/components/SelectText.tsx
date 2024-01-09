@@ -8,7 +8,13 @@ import Counter from "./Counter";
 
 interface SelectTextProps {
   setGenerated: (generated: boolean) => void;
-  setQuestionSets: (questionSets: MultipleChoiceSetProperties[] | ((prevQuestionSets: MultipleChoiceSetProperties[]) => MultipleChoiceSetProperties[])) => void;
+  setQuestionSets: (
+    questionSets:
+      | MultipleChoiceSetProperties[]
+      | ((
+          prevQuestionSets: MultipleChoiceSetProperties[]
+        ) => MultipleChoiceSetProperties[])
+  ) => void;
 }
 
 interface InputDataForMC {
@@ -75,7 +81,6 @@ function DOMtoString() {
 
 const summarize = async (text: string) => {
   try {
-    // Configure the Axios request
     const config: AxiosRequestConfig = {
       method: "post",
       url: "https://1t12e8sn7i.execute-api.us-east-1.amazonaws.com/Dev",
@@ -84,15 +89,12 @@ const summarize = async (text: string) => {
       },
       headers: {
         "Content-Type": "application/json",
-        // Add any other headers if needed (e.g., Authorization)
       },
     };
 
-    // Make the POST request
     const response: AxiosResponse = await axios(config);
-    // Handle the response
+
     return response.data;
-    // Add your logic to handle the response data here
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -109,7 +111,7 @@ interface JSONQuestionSet {
 
 const SelectText: React.FC<SelectTextProps> = ({
   setGenerated,
-  setQuestionSets
+  setQuestionSets,
 }) => {
   const [warning, setWarning] = useState<boolean>(false);
   const [questionsCount, setQuestionsCount] = useState<number>(2);
@@ -119,7 +121,10 @@ const SelectText: React.FC<SelectTextProps> = ({
     getContext().then((result) => {
       if (result !== undefined) {
         summarize(result.context).then((summary) => {
-          getQuestionSet({ context: summary.body, numQuestions: questionsCount }).then((questionSets) => {
+          getQuestionSet({
+            context: summary.body,
+            numQuestions: questionsCount,
+          }).then((questionSets) => {
             const data = JSON.parse(questionSets);
             const questionsArray = data.questions as JSONQuestionSet[];
             questionsArray.forEach((questionSet) => {
@@ -128,12 +133,24 @@ const SelectText: React.FC<SelectTextProps> = ({
                 {
                   question: questionSet.question,
                   choices: [
-                    { text: questionSet.a, isCorrect: questionSet.correctAnswerChoice === "a" },
-                    { text: questionSet.b, isCorrect: questionSet.correctAnswerChoice === "b" },
-                    { text: questionSet.c, isCorrect: questionSet.correctAnswerChoice === "c" },
-                    { text: questionSet.d, isCorrect: questionSet.correctAnswerChoice === "d" },
-                  ]
-                }
+                    {
+                      text: questionSet.a,
+                      isCorrect: questionSet.correctAnswerChoice === "a",
+                    },
+                    {
+                      text: questionSet.b,
+                      isCorrect: questionSet.correctAnswerChoice === "b",
+                    },
+                    {
+                      text: questionSet.c,
+                      isCorrect: questionSet.correctAnswerChoice === "c",
+                    },
+                    {
+                      text: questionSet.d,
+                      isCorrect: questionSet.correctAnswerChoice === "d",
+                    },
+                  ],
+                },
               ]);
             });
           });
@@ -145,7 +162,9 @@ const SelectText: React.FC<SelectTextProps> = ({
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <Question questionText="Multiple Choice" />
-      {warning && <Question questionText="Website too large. Please select text." />}
+      {warning && (
+        <Question questionText="Website too large. Please select text." />
+      )}
       <div className="mt-2 mx-auto w-9/12">
         <Counter count={questionsCount} setCount={setQuestionsCount} />
         <CheckAnswerButton
