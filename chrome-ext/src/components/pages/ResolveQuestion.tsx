@@ -14,9 +14,19 @@ const ResolveQuesiton = () => {
 
   const getTab = async () => {
     return new Promise((resolve) => {
-      chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
-        resolve(tabs[0].url);
-      });
+      chrome.windows
+        .getAll({ windowTypes: ["normal"] })
+        .then(async function (windows) {
+          var windowID = windows[0].id;
+          const tabs = await chrome.tabs.query({
+            active: true,
+            windowId: windowID,
+          });
+          var activeTab = tabs[0];
+          var activeTabId = activeTab.id;
+          if (activeTabId !== undefined)
+            return resolve(activeTab.url as string);
+        })
     });
   }
 
@@ -32,9 +42,9 @@ const ResolveQuesiton = () => {
           "Content-Type": "application/json",
         },
       };
-  
+
       const response: AxiosResponse = await axios(config);
-  
+
       return response.data;
     } catch (error) {
       console.error("Error fetching data:", error);
