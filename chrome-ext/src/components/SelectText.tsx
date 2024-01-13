@@ -48,9 +48,14 @@ const getQuestionSet = async (inputContext: InputDataForMC) => {
 };
 
 const getContext = async () => {
-  return chrome.tabs
-    .query({ active: true, currentWindow: true })
-    .then(function (tabs) {
+  return chrome.windows
+    .getAll({ windowTypes: ["normal"] })
+    .then(async function (windows) {
+      var windowID = windows[0].id;
+      const tabs = await chrome.tabs.query({
+        active: true,
+        windowId: windowID,
+      });
       var activeTab = tabs[0];
       var activeTabId = activeTab.id;
       if (activeTabId !== undefined)
@@ -69,9 +74,6 @@ const getContext = async () => {
           context: results[0].result,
         };
       }
-    })
-    .catch(function (error) {
-      alert("There was an error injecting script : \n" + error.message);
     });
 };
 
