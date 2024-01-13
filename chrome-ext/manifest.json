@@ -3,13 +3,11 @@
   "manifest_version": 3,
   "name": "Examingo",
   "description": "Get Questions and Answers",
-  "action": {
-    "default_popup": "js/index.html",
-    "default_title": "Examingo"
-  },
+  "action": {},
   "permissions": [
     "scripting",
     "activeTab"
   ],
+  "background": { "service_worker": "js/background.js" },
   "host_permissions": ["<all_urls>"]
 }
