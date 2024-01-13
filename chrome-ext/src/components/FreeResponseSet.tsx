@@ -14,20 +14,22 @@ const FreeResponseSet: React.FC<FreeResponseSetProps> = ({
   answer,
 }) => {
   const [displayAnswer, setDisplayAnswer] = useState(false);
+  const [inputText, setInputText] = useState("");
+  const [answerText, setAnswerText] = useState(answer);
 
   return (
     <div>
       <Question questionText={question} />
       <TextBox
-        initialText=""
+        text={inputText}
+        setText={setInputText}
         isReadOnly={displayAnswer}
-        textFunction={() => false}
       />
       {displayAnswer && (
         <TextBox
-          initialText={answer}
+          text={answerText}
+          setText={setAnswerText}
           isReadOnly={true}
-          textFunction={() => false}
         />
       )}
       {!displayAnswer && (

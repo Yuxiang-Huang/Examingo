@@ -1,26 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 
 type TextBoxProps = {
-  initialText: string;
+  text: string;
+  setText: (newText: string) => void;
   isReadOnly: boolean;
-  textFunction: () => void;
 };
 
 const TextBox: React.FC<TextBoxProps> = ({
-  initialText,
+  text,
+  setText,
   isReadOnly,
-  textFunction,
 }) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(
     document.createElement("textarea")
   );
-  const [text, setText] = useState<string>(initialText);
 
   useEffect(() => {
     textAreaRef.current.style.height = "auto";
     textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
-    textFunction();
-  }, [text, textFunction]);
+  }, [text]);
 
   return (
     <textarea
