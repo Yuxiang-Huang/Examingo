@@ -19,11 +19,14 @@
 
   font-size: 1rem /* 24px */;
   line-height: 2rem /* 32px */;
-  width: 18rem;
+  max-width: none;
+  /* width: 100%; */
+  /* width: 18rem;
   min-width: 18rem;
   min-height: 18rem;
-  max-height: 30rem;
-
+  max-height: 30rem; */
+  @apply w-full;
+  @apply h-screen;
   @apply p-4;
   @apply overflow-y-auto;
   @apply overflow-x-hidden;
